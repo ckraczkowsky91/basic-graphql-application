@@ -2,6 +2,7 @@ import express from 'express';
 import graphqlHTTP from 'express-graphql';
 
 import schema from './schema';
+import resolvers from './resolvers';
 
 // Intialize the Express web server
 const app = express();
@@ -10,8 +11,7 @@ app.get('/', (req, res) => {
   res.send('I love GraphQL!');
 });
 
-// Create a resolver: a function that returns the query from GraphQL
-const root = { hello: () => "Hello friend" };
+const root = resolvers;
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,
